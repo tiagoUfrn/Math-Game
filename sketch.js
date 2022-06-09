@@ -11,8 +11,11 @@ var larguraBotao = 200
 var xMaxBotao = xMinBotao + larguraBotao
 var alturaBotao = 60
 
-var yMinBotao3 = 160
+var yMinBotao3 = 160 
 var yMaxBotao3 = yMinBotao3 + alturaBotao
+
+var yMinBotao4 = 396    
+var yMaxBotao4 = yMinBotao4 + alturaBotao + larguraBotao 
 
 var yMinBotao1 = yMinBotao3 + deslocamentoBotaoMenu
 var yMaxBotao1 = yMinBotao1 + alturaBotao
@@ -21,22 +24,23 @@ var yMinBotao2 = yMinBotao3 + 2 * deslocamentoBotaoMenu
 var yMaxBotao2 = yMinBotao2 + alturaBotao
 
 //imagem dos menus
-var imgcred,imgmenu,imginst;
+var imgcred,imgmenu,imginst,imf, gameo;
 
 var fundoMenu;
 
-var fontChango;
+var fontDanc;
 
 var tela = 0;
 // 
 function acabouJogo() {
-    background(220);
-    textSize(28);
-    fill(10);
-    textAlign(LEFT);
-    text("Game Over!!", 20, 50);
-}
+    background(gameo);
 
+    textAlign(LEFT);
+    text("Game Over!!", 160, 199);
+    textAlign(CENTER);
+    menuBotao("voltar", yMinBotao4, yMaxBotao4, -0);
+    
+}
 function mouseClicked() {
     if (tela == 3 && nivel == 1) {
         if (escolhaFase == 1 || escolhaFase == 2) {
@@ -98,36 +102,39 @@ function triangulo(x, y, largura, altura, cor, posicaoNormal = true) {
 }
 
 function fase3() {
-    background(220);
+    background(gameo);
     textSize(28);
     fill(10);
     textAlign(LEFT);
-    text("Fase 3", 20, 50);
+    text("Fase 3", 190, 199);
+    textSize(20);
+    text("Ainda em desenvolvimento ...", 120, 233);
+    textAlign(CENTER);
+    menuBotao("voltar", yMinBotao4, yMaxBotao4, 1);
 
 
 }
-
 function fase2() {
-    background(220);
+    background(imf);
     textSize(28);
     fill(10);
     textAlign(LEFT);
-    text("Qual o próximo número?", 20, 50);
+    text("", 20, 50);
 
     textSize(44);
     fill(50);
-    text('30', 40, 150);
+    text('40', 40, 150);
 
-    text('27', 140, 150);
+    text('37', 140, 150);
 
-    text('24', 240, 150);
+    text('34', 240, 150);
 
     text('?', 340, 150);
 
     escolhaFase = 0;
     opcaoBotao(100, 250, 80, 80, 1);
     textSize(44);
-    text('21', 115, 305);
+    text('31', 115, 305);
 
     opcaoBotao(200, 250, 80, 80, 2);
     textSize(44);
@@ -139,37 +146,35 @@ function fase2() {
 
 }
 
-
-
 function fase1() {
-    background(220);
+    background(imf);
     textSize(28);
     fill(10);
     textAlign(LEFT);
-    text("Qual o próximo elemento?", 20, 50);
+    text("", 20, 50);
 
     var alturaTriangulo = 50;
     var larguraTriangulo = 50;
     var xTriangulo = 40;
     var yTriangulo = 100;
-    var corVerde = '#0A0'
-    var corVermelha = '#C00'
-    var corAmarela = '#FA0'
+    var corAuzul = '#0A9'
+    var corRosa = '#C09'
+    var corLaranja = '#FA9'
     noStroke();
-    fill(corVerde)
+    fill(corAuzul)
     triangle(xTriangulo, yTriangulo, xTriangulo + larguraTriangulo / 2, yTriangulo + alturaTriangulo, xTriangulo + larguraTriangulo, yTriangulo)
-    fill(corAmarela)
+    fill(corLaranja)
     ellipse(yTriangulo + 35, 125, 50, 50)
     var xTriangulo2 = yTriangulo + 80;
     fill(10);
     triangle(xTriangulo2, yTriangulo + alturaTriangulo, xTriangulo2 + larguraTriangulo / 2, yTriangulo, xTriangulo2 + larguraTriangulo, yTriangulo + alturaTriangulo)
-    fill(corVermelha)
+    fill(corRosa)
     ellipse(xTriangulo + 230, 125, 50, 50)
 
     xTriangulo = 40;
     yTriangulo = 100;
 
-    triangulo(310, yTriangulo, larguraTriangulo, alturaTriangulo, '#0A0', false)
+    triangulo(310, yTriangulo, larguraTriangulo, alturaTriangulo, '#0A9', false)
 
     fill(10);
     escolhaFase = 0;
@@ -177,11 +182,11 @@ function fase1() {
     triangulo(115, 265, larguraTriangulo, alturaTriangulo, 10)
 
     opcaoBotao(200, 250, 80, 80, 2)
-    fill(corVermelha)
+    fill(corRosa)
     ellipse(240, 290, 50, 50)
 
     opcaoBotao(300, 250, 80, 80, 3)
-    fill(corAmarela)
+    fill(corLaranja)
     ellipse(340, 290, 50, 50)
 
 
@@ -223,52 +228,27 @@ function telaMenu() {
 
 function telaInstrucoes() {
     background(imginst);
-  /*  textSize(36);
     textAlign(CENTER);
-    fill(corDaFonte)
-    text("Instruções", width / 2, 70);
-    textSize(16);
-    fill(80);
-    textAlign(LEFT);
-    text("Use o mouse para selecionar as opções. ", 20, 120, 460)
-    text("O objetivo do jogo é acerta qual é o próximo elemento da sequência apresentada. ", 20, 150, 460)
-    textSize(14);
-    text("Este jogo é baseado na Habilidade EF02MA11 da BNCC. Esta habilidade trata da identificação de regularidades em sequências, observação e determinação de elementos ausentes na sequência (numéricas e figurativas; recursivas ou repetitivas). ", 20, 220, 460) */
-
+    menuBotao("voltar", yMinBotao4, yMaxBotao4, -0);
 }
 
 function telaCreditos() {
     background(imgcred);
- /*   textSize(36);
-    textAlign(LEFT);
-    fill(corDaFonte);
-    text("Créditos", 160, 70);
-    textSize(20);
-    text("RENATO RODRIGUES", 200, 120);
-    text("JÚLIA MAFRA", 240, 350);
-    textSize(16);
-    text("Função: Educador", 230, 140);
-    text("Função: Programadora", 230, 370);
-    textSize(14);
-    fill(80);
-    text("Licenciado em Matemática pela Universidade Federal do Rio Grande do Norte, Especialista em Educação Matemática para o Ensino Fundamental e Medio pelo Instituto de Educação Superior Presidente Kennedy. Mestre em Ensino de Ciências Naturais e Matemática pelo Programa de Pós-Graduação em Ensino de Ciências e Matemática - PPGECNM - UFRN.", 180, 165, 300)
-    text("Estudante do Bacharelado em Ciências e Tecnologia na UFRN.", 180, 395, 300)
-    image(imagemEducador, 20, 110);
-    image(imagemProgramadora, 20, 330); */
-}
+    menuBotao("voltar", yMinBotao4, yMaxBotao4, 1);
+ }
 
 function preload() {
-//    imagemEducador = loadImage("eu.JPG")
-//    imagemProgramadora = loadImage("loader.JPG");
     imginst= loadImage("tela instru.png");
     imgmenu = loadImage("menu.png");
+    imf = loadImage("tfin.png");
+    gameo = loadImage("gameo.png");
     imgcred = loadImage("tela creditos.png");
     fontChango = loadFont("DancingScript-VariableFont_wght.ttf")
     
 }
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(600, 600);
 }
 
 function draw() {
